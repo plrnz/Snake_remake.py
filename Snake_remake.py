@@ -8,12 +8,10 @@ TILE_SIZE = 25
 WINDOW_WIDTH = TILE_SIZE * COLS  # 25*25 = 625
 WINDOW_HEIGHT = TILE_SIZE * ROWS  # 25*25 = 625
 
-
 class Tile:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-
 
 # game window
 window = tkinter.Tk()
@@ -46,7 +44,6 @@ snake_body = []  # multiple snake tiles
 game_over = False
 score = 0
 
-
 # game loop
 def change_direction(e):  # e = event
     # print(e)
@@ -71,7 +68,6 @@ def change_direction(e):  # e = event
     elif (e.keysym == "Right" and velocityX != -1):
         velocityX = 1
         velocityY = 0
-
 
 def move():
     global snake, food, snake_body, game_over, score
@@ -107,8 +103,6 @@ def move():
 
     snake.x += velocityX * TILE_SIZE
     snake.y += velocityY * TILE_SIZE
-
-
 
 def draw():
     global snake, food, snake_body, game_over, score
