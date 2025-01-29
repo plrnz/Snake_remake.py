@@ -45,11 +45,14 @@ game_over = False
 score = 0
 game_pause = False # variable to pause the game
 
-def pause_button():
+def toggle_pause():
     global game_over
     game_pause = not game_pause
     if not game_pause:
         draw()
+
+pause_button = tkinter.Button(window, text="Pause", command=toggle_pause, font=("Times New Roman", 12), bg="white")
+pause_button.place(x=WINDOW_WIDTH - 80, y=10) # place of the pause button
 
 # game loop
 def change_direction(e):  # e = event
