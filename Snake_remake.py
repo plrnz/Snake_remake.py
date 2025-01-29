@@ -43,6 +43,13 @@ velocityY = 0
 snake_body = []  # multiple snake tiles
 game_over = False
 score = 0
+game_pause = False # variable to pause the game
+
+def pause_button():
+    global game_over
+    game_pause = not game_pause
+    if not game_pause:
+        draw()
 
 # game loop
 def change_direction(e):  # e = event
