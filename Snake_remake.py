@@ -65,13 +65,14 @@ def reset_game():
     game_pause = False
     speed = 300
 
+    restart_button.place_forget()
     draw()
 
 pause_button = tkinter.Button(window, text="Pause", command=toggle_pause, font=("Times New Roman", 12), bg="white")
 pause_button.place(x=WINDOW_WIDTH - 80, y=10) # place of the pause button
 
 restart_button = tkinter.Button(window, text='Play Again', command=reset_game, font=("Times New Roman", 12), bg="white")
-restart_button.place(x=WINDOW_WIDTH - 160, y=10) # place the restart button
+restart_button.place_forget() # place the restart button
 
 # game loop
 def change_direction(e):  # e = event
@@ -80,6 +81,7 @@ def change_direction(e):  # e = event
 
     global velocityX, velocityY, game_over
     if (game_over):
+        restart_button.place(x=WINDOW_WIDTH - 160, y=10)
         return  # edit this code to reset game variables to play again
     
     if (e.keysym == "Up" and velocityY != 1):
@@ -154,6 +156,7 @@ def draw():
     if (game_over):
         canvas.create_text(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, font="Arial 20", text=f"Game Over: {score}",
                            fill="white")
+        restart_button.place(x=WINDOW_WIDTH - 160, y=10)
     else:
         canvas.create_text(30, 20, font="Arial 10", text=f"Score: {score}", fill="white")
 
