@@ -44,7 +44,7 @@ snake_body = []  # multiple snake tiles
 game_over = False
 score = 0
 game_pause = False # variable to pause the game
-speed = 100 # initial speed
+speed = 300 # initial speed
 
 def toggle_pause():
     global game_pause
@@ -53,7 +53,7 @@ def toggle_pause():
         draw()
 
 def reset_game():
-    global snake, food, velocityX, velocityY, snake_body, game_over, score, game_pause
+    global snake, food, velocityX, velocityY, snake_body, game_over, score, game_pause, speed
     # Reset all the game variables
     snake = Tile(TILE_SIZE * 5, TILE_SIZE * 5)
     food = Tile(TILE_SIZE * 10, TILE_SIZE * 10)
@@ -63,6 +63,7 @@ def reset_game():
     game_over = False
     score = 0 
     game_pause = False
+    speed = 300
 
     draw()
 
@@ -98,7 +99,7 @@ def change_direction(e):  # e = event
         velocityY = 0
 
 def move():
-    global snake, food, snake_body, game_over, score
+    global snake, food, snake_body, game_over, score, speed
     if (game_over or game_pause):
         return
     
@@ -117,6 +118,9 @@ def move():
         food.x = random.randint(0, COLS - 1) * TILE_SIZE
         food.y = random.randint(0, ROWS - 1) * TILE_SIZE
         score += 1
+
+        if score % 1 == 0: # speed up every 5 food eaten
+            speed = max(50, speed -20)
 
  # update snake body
     for i in range(len(snake_body) - 1, -1, -1):
@@ -154,7 +158,7 @@ def draw():
         canvas.create_text(30, 20, font="Arial 10", text=f"Score: {score}", fill="white")
 
     if not game_over and not game_pause:
-        window.after(100, draw)  # call draw again every 100ms (1/10 of a second) = 10 frames per second
+        window.after(speed, draw)  # call draw again every 100ms (1/10 of a second) = 10 frames per second
 
 draw()
 window.bind("<KeyRelease>", change_direction)  # when you press on any key and then let go
