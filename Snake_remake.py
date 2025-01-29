@@ -51,6 +51,20 @@ def toggle_pause():
     if not game_pause:
         draw()
 
+def reset_game():
+    global snake, food, velocityX, velocityY, snake_body, game_over, score, game_pause
+    # Reset all the game variables
+    snake = Tile(TILE_SIZE * 5, TILE_SIZE * 5)
+    food = Tile(TILE_SIZE * 10, TILE_SIZE * 10)
+    velocityX = 0
+    velocityY = 0
+    snake_body = []
+    game_over = False
+    score = 0 
+    game_pause = False
+
+    draw()
+
 pause_button = tkinter.Button(window, text="Pause", command=toggle_pause, font=("Times New Roman", 12), bg="white")
 pause_button.place(x=WINDOW_WIDTH - 80, y=10) # place of the pause button
 
