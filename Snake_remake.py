@@ -46,7 +46,7 @@ score = 0
 game_pause = False # variable to pause the game
 
 def toggle_pause():
-    global game_over
+    global game_pause
     game_pause = not game_pause
     if not game_pause:
         draw()
@@ -81,7 +81,7 @@ def change_direction(e):  # e = event
 
 def move():
     global snake, food, snake_body, game_over, score
-    if (game_over):
+    if (game_over or game_pause):
         return
     
     if (snake.x < 0 or snake.x >= WINDOW_WIDTH or snake.y < 0 or snake.y >= WINDOW_HEIGHT):
@@ -135,7 +135,8 @@ def draw():
     else:
         canvas.create_text(30, 20, font="Arial 10", text=f"Score: {score}", fill="white")
 
-    window.after(100, draw)  # call draw again every 100ms (1/10 of a second) = 10 frames per second
+    if not game_over and not game_pause:
+        window.after(100, draw)  # call draw again every 100ms (1/10 of a second) = 10 frames per second
 
 draw()
 window.bind("<KeyRelease>", change_direction)  # when you press on any key and then let go
