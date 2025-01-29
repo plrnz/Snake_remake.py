@@ -44,6 +44,7 @@ snake_body = []  # multiple snake tiles
 game_over = False
 score = 0
 game_pause = False # variable to pause the game
+speed = 100 # initial speed
 
 def toggle_pause():
     global game_pause
