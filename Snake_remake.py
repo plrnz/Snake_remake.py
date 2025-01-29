@@ -68,6 +68,9 @@ def reset_game():
 pause_button = tkinter.Button(window, text="Pause", command=toggle_pause, font=("Times New Roman", 12), bg="white")
 pause_button.place(x=WINDOW_WIDTH - 80, y=10) # place of the pause button
 
+restart_button = tkinter.Button(window, text='Play Again', command=reset_game, font=("Times New Roman", 12), bg="white")
+restart_button.place(x=WINDOW_WIDTH - 160, y=10) # place the restart button
+
 # game loop
 def change_direction(e):  # e = event
     # print(e)
